@@ -12,7 +12,8 @@ Source1:        sensu-backend.service
 Source2:        sensu-agent.service
 Source3:        backend.yml
 Source4:        sensu-build.sh
-Source5:	    vendor-5.19.0.tar.gz
+Source5:        go.tar.gz
+Source6:        %{name}-tmpfiles.conf
 
 BuildRequires:      systemd
 BuildRequires:      golang >= 1.13-0
@@ -57,9 +58,9 @@ The Sensu GO (sensuctl) command line utility to interact with Sensu Go Backend.
 %setup -q
 
 %build
-cp %{SOURCE5} vendor-5.19.0.tar.gz
-tar zxvfp vendor-5.19.0.tar.gz 
-go env -w GOPATH=/builddir/build/BUILD/sensu-go-5.19.0/vendor
+cp %{SOURCE5} go.tar.gz
+tar zxvfp go.tar.gz 
+go env -w GOPATH=/builddir/build/BUILD/sensu-go-5.19.0/go
 mkdir -p %{buildroot}/usr/sbin
 cp %{SOURCE4} sensu-build.sh 
 ./sensu-build.sh -v %{version}
