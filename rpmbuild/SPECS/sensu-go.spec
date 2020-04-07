@@ -14,6 +14,7 @@ Source3:        backend.yml
 Source4:        sensu-build.sh
 Source5:        go.tar.gz
 Source6:        %{name}-tmpfiles.conf
+Source7:        agent.yml
 
 BuildRequires:      systemd
 BuildRequires:      golang >= 1.13-0
@@ -81,7 +82,7 @@ install -m 755 bin/sensuctl %{buildroot}/usr/sbin/sensuctl
 install -m 0644 %{SOURCE1} %{buildroot}/usr/lib/systemd/system/sensu-backend.service
 install -m 0640 %{SOURCE3} %{buildroot}/etc/sensu/backend.yml
 install -m 0644 %{SOURCE2} %{buildroot}/usr/lib/systemd/system/sensu-agent.service
-install -m 0640 %{SOURCE5} %{buildroot}/etc/sensu/agent.yml
+install -m 0640 %{SOURCE7} %{buildroot}/etc/sensu/agent.yml
 install -m 0644 %{SOURCE6} %{buildroot}%{_tmpfilesdir}/%{name}.conf
 
 %check
